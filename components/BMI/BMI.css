@@ -1,0 +1,12 @@
+.container {
+    width: 600px;
+    margin: auto;
+    background-color: white;
+    padding: 10px;
+}
+
+.result {
+    font-weight: bold;
+    font-size: xx-large;
+    border: solid gray 1px;
+}
