@@ -12,6 +12,16 @@ body {
     font-weight: bold;
     font-size: xx-large;
     border: solid gray 1px;
+    margin: 10px;
+}
+
+.warning {
+    color: red;
+}
+
+.sitelink {
+    color: grey;
+    font-size: large;
 }
 
 /*# sourceMappingURL=/main.1f19ae8e.css.map */

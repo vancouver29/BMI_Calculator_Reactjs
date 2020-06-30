@@ -28412,7 +28412,7 @@ var BMI = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      height: 1.7,
+      height: 170,
       // 1.7 m
       weight: 65 // 65 kg
 
@@ -28437,6 +28437,56 @@ var BMI = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "displayHeight",
+    value: function displayHeight() {
+      var cm = this.state.height;
+      return "".concat(cm, " ") + this.pluralize(cm, "CM", "CMs");
+    }
+  }, {
+    key: "displayWeight",
+    value: function displayWeight() {
+      // const kg = this.state.weight;
+      // return `${kg} kg`;
+      return this.state.weight + " " + this.pluralize(this.state.weight, "KG", "KGs");
+    }
+  }, {
+    key: "displayBMI",
+    value: function displayBMI() {
+      var bmi = 1.3 * this.state.weight / Math.pow(this.state.height / 100, 2.5);
+      var lastTwoDecimalPlaces = Math.floor(bmi * 100) % 100;
+      return Math.floor(bmi) + "." + lastTwoDecimalPlaces;
+    }
+  }, {
+    key: "displayClassification",
+    value: function displayClassification() {
+      var bmi = parseFloat(this.displayBMI());
+
+      if (bmi < 18.5) {
+        return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+          className: "warning"
+        }, " Underweight "), " ", /*#__PURE__*/_react.default.createElement("a", {
+          className: "sitelink",
+          href: "https://www.nhs.uk/live-well/healthy-weight/advice-for-underweight-adults/"
+        }, "What can i do ?"), " ");
+      } else if (bmi < 24.9) {
+        return "Normal";
+      } else if (bmi < 29.9) {
+        return "Overweigth";
+      } else {
+        return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+          className: "warning"
+        }, " Obese "), " ", /*#__PURE__*/_react.default.createElement("a", {
+          className: "sitelink",
+          href: "https://www.kidney.org/atoz/content/obesewyska"
+        }, "What can i do ?"), " ");
+      }
+    }
+  }, {
+    key: "pluralize",
+    value: function pluralize(count, singular, plural) {
+      return count == 1 ? singular : plural;
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("div", {
@@ -28447,17 +28497,21 @@ var BMI = /*#__PURE__*/function (_Component) {
         min: "1",
         max: "250",
         onChange: this.handleHeightChange
-      }), " "), " ", /*#__PURE__*/_react.default.createElement("p", null, " Weight "), " ", /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("input", {
+      }), " ", " "), " ", " ", /*#__PURE__*/_react.default.createElement("p", null, " Weight "), " ", " ", /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("input", {
         type: "range",
         value: this.state.weight,
         min: "1",
         max: "250",
         onChange: this.handleWeightChange
-      }), " "), /*#__PURE__*/_react.default.createElement("div", {
+      }), " ", " "), " ", " ", /*#__PURE__*/_react.default.createElement("div", {
         className: "result"
-      }, " ", this.state.height, " "), /*#__PURE__*/_react.default.createElement("div", {
+      }, " ", this.displayHeight(), " "), " ", " ", /*#__PURE__*/_react.default.createElement("div", {
         className: "result"
-      }, " ", this.state.weight, " "), " ");
+      }, " ", this.displayWeight(), " "), " ", " ", /*#__PURE__*/_react.default.createElement("div", {
+        className: "result"
+      }, " ", this.displayBMI(), " "), " ", " ", /*#__PURE__*/_react.default.createElement("div", {
+        className: "result"
+      }, " ", this.displayClassification(), " "), " ", " ");
     }
   }]);
 
@@ -28569,7 +28623,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51467" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54555" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
